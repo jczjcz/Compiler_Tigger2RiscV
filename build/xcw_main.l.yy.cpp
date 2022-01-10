@@ -1018,7 +1018,7 @@ YY_RULE_SETUP
 case 36:
 YY_RULE_SETUP
 #line 78 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{ yylval = new string("%");return MOD;}
+{ yylval = new string("rem");return MOD;}
 	YY_BREAK
 case 37:
 *yy_cp = (yy_hold_char); /* undo effects of setting up yytext */

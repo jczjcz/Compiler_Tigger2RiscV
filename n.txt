@@ -7,133 +7,48 @@ v0:
 .word	0
 .text
 .align	2
-.global	bubblesort
-.type	bubblesort,	@function
-bubblesort:
+.global	gcd
+.type	gcd,	@function
+gcd:
 addi sp, sp, -16
 sw ra, 12(sp)
-li s4, 0
+bge a0, a1, .l0
+mv a3, a0
+mv a0, a1
+mv a1, a3
 .l0:
-lui t0, %hi(v0)
-lw t0, %lo(v0)(t0)
-addi a3, t0, -1
-bge s4, a3, .l1
-li a2, 0
-.l2:
-lui t0, %hi(v0)
-lw t0, %lo(v0)(t0)
-sub a3, t0, s4
-addi a3, a3, -1
-bge a2, a3, .l3
-li s0, 4
-mul a3, a2, s0
-add a3, a0, a3
-lw a3, 0(a3)
-addi a1, a2, 1
-li s0, 4
-mul a1, a1, s0
-add a1, a0, a1
-lw a1, 0(a1)
-ble a3, a1, .l4
-addi a3, a2, 1
-li s0, 4
-mul a3, a3, s0
-add a3, a0, a3
-lw a3, 0(a3)
-mv t6, a3
-li s0, 4
-mul a3, a2, s0
-add a3, a0, a3
-lw a1, 0(a3)
-addi a3, a2, 1
-li s0, 4
-mul a3, a3, s0
-add a3, a0, a3
-sw a1, 0(a3)
-li s0, 4
-mul a3, a2, s0
-add a3, a0, a3
-sw t6, 0(a3)
-.l4:
-addi a2, a2, 1
-j .l2
-.l3:
-addi s4, s4, 1
-j .l0
+rem a3, a0, a1
 .l1:
-li a0, 0
+beq a3, x0, .l2
+mv a0, a1
+mv a1, a3
+rem a3, a0, a1
+j .l1
+.l2:
+mv a0, a1
 lw ra, 12(sp)
 addi sp, sp, 16
 ret
-.size bubblesort, .-bubblesort
+.size gcd, .-gcd
 .text
 .align	2
 .global	main
 .type	main,	@function
 main:
-addi sp, sp, -64
-sw ra, 60(sp)
-li t0, 10
-la t1, v0
-sw t0, 0(t1)
-addi t1, sp, 0
-li t0, 4
-sw t0, 0(t1)
-addi t1, sp, 4
-li t0, 3
-sw t0, 0(t1)
-addi t1, sp, 8
-li t0, 9
-sw t0, 0(t1)
-addi t1, sp, 12
-li t0, 2
-sw t0, 0(t1)
-addi t1, sp, 16
-sw x0, 0(t1)
-addi t1, sp, 20
-li t0, 1
-sw t0, 0(t1)
-addi t1, sp, 24
-li t0, 6
-sw t0, 0(t1)
-addi t1, sp, 28
-li t0, 5
-sw t0, 0(t1)
-addi t1, sp, 32
-li t0, 7
-sw t0, 0(t1)
-addi t1, sp, 36
-li t0, 8
-sw t0, 0(t1)
-addi t0, sp, 0
-addi a0, t0, 0
+addi sp, sp, -16
+sw ra, 12(sp)
+call getint
 mv a0, a0
-call bubblesort
-mv a3, a0
-.l5:
-lui t1, %hi(v0)
-lw t1, %lo(v0)(t1)
-bge a3, t1, .l6
-li s0, 4
-mul s4, a3, s0
-addi t0, sp, 0
-add s4, t0, s4
-lw a0, 0(s4)
+sw a0, 0(sp)
+call getint
+mv s4, a0
+lw a0, 0(sp)
 mv a0, a0
-sw a3, 40(sp)
+mv a1, s4
+call gcd
 mv a0, a0
-call putint
-lw a3, 40(sp)
-li a0, 10
-sw a3, 40(sp)
 mv a0, a0
-call putch
-lw a3, 40(sp)
-addi a3, a3, 1
-j .l5
-.l6:
-li a0, 0
-lw ra, 60(sp)
-addi sp, sp, 64
+lw ra, 12(sp)
+addi sp, sp, 16
 ret
 .size main, .-main

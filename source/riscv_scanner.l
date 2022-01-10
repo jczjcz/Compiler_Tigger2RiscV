@@ -75,7 +75,7 @@ v{digit}+   {
 "&&"    { yylval = new string("&&");return AND;}
 "||"    { yylval = new string("||");return OR;}
 "!"     { yylval = new string("!"); return NOT;}
-"%"     { yylval = new string("%");return MOD;}
+"%"     { yylval = new string("rem");return MOD;}
 
 "//".*$ {/* Single line comment */}
 %%
