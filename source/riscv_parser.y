@@ -202,11 +202,39 @@ Expression:
     }
     | REG ASSIGN REG BinOp NUM
     {
-        other_out = " li s0, " + to_string(*(ToInt(5)));
-        Func_Other.push_back(other_out);
-        other_out = " " + (*ToStr($4)) + " " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
-        Func_Other.push_back(other_out);    // 有问题，直接 op reg1, reg2, s0吗
-
+        int ass_num = (*(ToInt($5)));
+        out << "ass_num = "<<ass_num<<endl;
+        string* str_op = new string((*ToStr($4)));
+        out << "str_op = "<<(*str_op)<<endl;
+        if((*str_op) == "add"){
+            if(ass_num > 2047 || ass_num < -2048){  
+                other_out = " li s0 " + to_string(ass_num);
+                Func_Other.push_back(other_out);  
+                other_out = " add " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
+                Func_Other.push_back(other_out);  
+            }
+            else{
+                other_out = " addi " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", " + to_string(ass_num);
+                Func_Other.push_back(other_out);
+            }
+        }
+        else if((*str_op) == "slt"){
+            if(ass_num > 2047 || ass_num < -2048){  
+                other_out = " li s0 " + to_string(ass_num);
+                Func_Other.push_back(other_out);  
+                other_out = " slt " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
+                Func_Other.push_back(other_out);  
+            }
+            else{
+                other_out = " slti " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", "+ to_string(ass_num);
+                Func_Other.push_back(other_out);
+            }
+        }
+        else{
+            Func_Other.push_back(other_out);
+            other_out = " " + (*ToStr($4)) + " " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
+            Func_Other.push_back(other_out);   
+        }
     }
     | REG ASSIGN OP REG
     {
