@@ -149,7 +149,7 @@ Expression:
     }
     | REG ASSIGN REG BinOp REG
     {
-        string* str_op = new string((*ToStr($3)));
+        string* str_op = new string((*ToStr($4)));
         if((*str_op) == "<="){
             other_out = " sgt ";
             other_out += ((*ToStr($1)) + ", " + (*ToStr($3)) + ", " + (*ToStr($5)));
@@ -204,13 +204,47 @@ Expression:
     {
         other_out = " li s0, " + to_string(*(ToInt(5)));
         Func_Other.push_back(other_out);
-        other_out = " " + ((*ToStr($4)) + " " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
+        other_out = " " + (*ToStr($4)) + " " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
         Func_Other.push_back(other_out);    // 有问题，直接 op reg1, reg2, s0吗
 
     }
     | REG ASSIGN OP REG
+    {
+        string* str_op = new string((*ToStr($3)));
+        if((*str_op) == "add"){
+            other_out = " mv " + (*ToStr($1)) + ", " + (*ToStr($4));
+            Func_Other.push_back(other_out);  
+        }
+        else if((*str_op) == "sub"){
+            other_out = " neg " + (*ToStr($1)) + ", " + (*ToStr($4));
+            Func_Other.push_back(other_out);  
+        }
+        else if((*str_op) == "!"){
+            other_out = " seqz " + (*ToStr($1)) + ", " + (*ToStr($4));
+            Func_Other.push_back(other_out);  
+        }
+    }
     | REG ASSIGN REG
+    {
+        other_out = " mv " + (*ToStr($1)) + ", " + (*ToStr($3));
+        Func_Other.push_back(other_out);  
+    }
     | REG LBRAC NUM RBRAC ASSIGN REG
+    {
+        int ass_num = (*(ToInt($3))) ;     ///得到int12
+        if(ass_num > 2047 || ass_num < -2048){       
+            other_out = " li s0 " + to_string(ass_num);
+            Func_Other.push_back(other_out);  
+            other_out = " add s0, " + (*ToStr($1)) + ", s0";
+            Func_Other.push_back(other_out);  
+            other_out = " sw " + (*ToStr($6)) + ", 0(s0)";
+            Func_Other.push_back(other_out);  
+        }
+        else{
+            other_out = " sw " + (*ToStr($6)) + ", " + to_string(ass_num) + "(" + (*ToStr($1)) + ")";
+            Func_Other.push_back(other_out);
+        }
+    }
     | REG ASSIGN REG LBRAC NUM RBRAC
     | IF REG LOGICOP REG GOTO LABEL
     | GOTO LABEL
