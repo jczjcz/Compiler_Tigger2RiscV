@@ -303,10 +303,63 @@ Expression:
         Func_Other.push_back(other_out);
     }
     | STORE REG NUM
+    {
+        int ass_num = (*(ToInt($3))) ;     ///得到int10
+        if(ass_num > 511 || ass_num < -512){       
+            other_out = " li s0 " + to_string(ass_num * 4);
+            Func_Other.push_back(other_out);  
+            other_out = " add s0, sp, s0";
+            Func_Other.push_back(other_out);  
+            other_out = " sw " + (*ToStr($2)) + ", 0(s0)";
+            Func_Other.push_back(other_out);  
+        }
+        else{
+            other_out = " sw " + (*ToStr($2)) + ", " + to_string(ass_num * 4) + "(sp)";
+            Func_Other.push_back(other_out);
+        }
+    }
     | LOAD NUM REG
+    {
+        int ass_num = (*(ToInt($2))) ;     ///得到int10
+        if(ass_num > 511 || ass_num < -512){       
+            other_out = " li s0 " + to_string(ass_num * 4);
+            Func_Other.push_back(other_out);  
+            other_out = " add s0, sp, s0";
+            Func_Other.push_back(other_out);  
+            other_out = " lw " + (*ToStr($3)) + ", 0(s0)";
+            Func_Other.push_back(other_out);  
+        }
+        else{
+            other_out = " lw " + (*ToStr($3)) + ", " + to_string(ass_num * 4) + "(sp)";
+            Func_Other.push_back(other_out);
+        }
+    }
     | LOAD IDENT REG
+    {
+        other_out = " lui " + (*ToStr($3)) + ", %hi(" + (*ToStr($2)) + ")";
+        Func_Other.push_back(other_out);
+        other_out = " lw " + (*ToStr($3)) + ", %lo(" + (*ToStr($2)) + ")(" + (*ToStr($3)) + ")";
+        Func_Other.push_back(other_out);
+    }
     | LOADADDR NUM REG
+    {
+        int ass_num = (*(ToInt($2))) ;     ///得到int10
+        if(ass_num > 511 || ass_num < -512){       
+            other_out = " li s0 " + to_string(ass_num * 4);
+            Func_Other.push_back(other_out);  
+            other_out = " add " + (*(ToStr($3))) + ", sp, s0";
+            Func_Other.push_back(other_out);  
+        }
+        else{
+            other_out = " addi " + (*ToStr($3)) + ", sp, " + to_string(ass_num * 4);
+            Func_Other.push_back(other_out);
+        }
+    }
     | LOADADDR IDENT REG
+    {
+        other_out = " la " + (*ToStr($3)) + ", " + (*ToStr($2));
+        Func_Other.push_back(other_out);
+    }
 ;
 
 BinOp:

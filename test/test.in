@@ -7,6 +7,10 @@ f_main [0] [0]
     t0 = a0[4]
     if t1 <= t2 goto l2
 
+    loadaddr 10 t0
+    loadaddr 2049 t0
+
+
     return
 end f_main
 
