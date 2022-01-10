@@ -933,7 +933,7 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 #line 61 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{++charNum; return COLON;}
+{return COLON;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
@@ -993,12 +993,12 @@ YY_RULE_SETUP
 case 31:
 YY_RULE_SETUP
 #line 73 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{++charNum; return LBRAC;}
+{return LBRAC;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 74 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{++charNum; return RBRAC;}
+{return RBRAC;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP

@@ -230,7 +230,7 @@ Expression:
         Func_Other.push_back(other_out);  
     }
     | REG LBRAC NUM RBRAC ASSIGN REG
-    {
+    {     // reg1[int12] = reg2
         int ass_num = (*(ToInt($3))) ;     ///得到int12
         if(ass_num > 2047 || ass_num < -2048){       
             other_out = " li s0 " + to_string(ass_num);
@@ -246,7 +246,45 @@ Expression:
         }
     }
     | REG ASSIGN REG LBRAC NUM RBRAC
+    {// reg1 = reg2[int12]
+        int ass_num = (*(ToInt($5))) ;     ///得到int12
+        if(ass_num > 2047 || ass_num < -2048){       
+            other_out = " li s0 " + to_string(ass_num);
+            Func_Other.push_back(other_out);  
+            other_out = " add s0, " + (*ToStr($3)) + ", s0";
+            Func_Other.push_back(other_out);  
+            other_out = " lw " + (*ToStr($1)) + ", 0(s0)";
+            Func_Other.push_back(other_out);  
+        }
+        else{
+            other_out = " lw " + (*ToStr($1)) + ", " + to_string(ass_num) + "(" + (*ToStr($3)) + ")";
+            Func_Other.push_back(other_out);
+        }
+    }
     | IF REG LOGICOP REG GOTO LABEL
+    {
+        string* str_op = new string((*ToStr($3)));
+        if((*str_op) == "slt"){      //表示 <
+            other_out = " blt ";
+        }
+        else if((*str_op) == "sgt"){
+            other_out = " bgt ";
+        }
+        else if((*str_op) == "<="){
+            other_out = " ble ";
+        }
+        else if((*str_op) == ">="){
+            other_out = " bge ";
+        }
+        else if((*str_op) == "!="){
+            other_out = " bne ";
+        }
+        else if((*str_op) == "=="){
+            other_out = " beq ";
+        }
+        other_out += ((*ToStr($2)) + ", " + (*ToStr($4)) + ", ." + (*ToStr($6)));
+        Func_Other.push_back(other_out);
+    }
     | GOTO LABEL
     | LABEL COLON
     | CALL FUNC

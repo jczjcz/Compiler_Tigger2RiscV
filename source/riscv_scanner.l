@@ -58,7 +58,7 @@ v{digit}+   {
     yylval = new int(strtol(yytext, nullptr, 10));
     return NUM;
 }
-":"     {++charNum; return COLON;}
+":"     {return COLON;}
 "+"     {yylval = new string("add");return ADD;}
 "-"     {yylval = new string("sub");return SUB;}
 "*"     { yylval = new string("mul");return MUL;}
@@ -70,8 +70,8 @@ v{digit}+   {
 "=="    { yylval = new string("==");return EQ;}
 "!="    { yylval = new string("!=");return NEQ;}
 "="     { yylval = new string("=");return ASSIGN;}
-"["     {++charNum; return LBRAC;}
-"]"     {++charNum; return RBRAC;}
+"["     {return LBRAC;}
+"]"     {return RBRAC;}
 "&&"    { yylval = new string("&&");return AND;}
 "||"    { yylval = new string("||");return OR;}
 "!"     { yylval = new string("!"); return NOT;}

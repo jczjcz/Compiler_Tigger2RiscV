@@ -522,9 +522,9 @@ static const yytype_uint16 yyrline[] =
 {
        0,    51,    51,    52,    56,    60,    67,    84,    92,    96,
      120,   130,   131,   135,   140,   150,   203,   211,   227,   232,
-     248,   249,   250,   251,   252,   253,   254,   255,   256,   257,
-     261,   262,   266,   267,   268,   269,   270,   271,   275,   276,
-     277,   278,   279,   280
+     248,   264,   288,   289,   290,   291,   292,   293,   294,   295,
+     299,   300,   304,   305,   306,   307,   308,   309,   313,   314,
+     315,   316,   317,   318
 };
 #endif
 
@@ -1563,7 +1563,7 @@ yyreduce:
 
   case 19:
 #line 233 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1652  */
-    {
+    {     // reg1[int12] = reg2
         int ass_num = (*(ToInt(yyvsp[-3]))) ;     ///得到int12
         if(ass_num > 2047 || ass_num < -2048){       
             other_out = " li s0 " + to_string(ass_num);
@@ -1581,8 +1581,56 @@ yyreduce:
 #line 1582 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
     break;
 
+  case 20:
+#line 249 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1652  */
+    {// reg1 = reg2[int12]
+        int ass_num = (*(ToInt(yyvsp[-1]))) ;     ///得到int12
+        if(ass_num > 2047 || ass_num < -2048){       
+            other_out = " li s0 " + to_string(ass_num);
+            Func_Other.push_back(other_out);  
+            other_out = " add s0, " + (*ToStr(yyvsp[-3])) + ", s0";
+            Func_Other.push_back(other_out);  
+            other_out = " lw " + (*ToStr(yyvsp[-5])) + ", 0(s0)";
+            Func_Other.push_back(other_out);  
+        }
+        else{
+            other_out = " lw " + (*ToStr(yyvsp[-5])) + ", " + to_string(ass_num) + "(" + (*ToStr(yyvsp[-3])) + ")";
+            Func_Other.push_back(other_out);
+        }
+    }
+#line 1602 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+    break;
 
-#line 1586 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+  case 21:
+#line 265 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1652  */
+    {
+        string* str_op = new string((*ToStr(yyvsp[-3])));
+        if((*str_op) == "slt"){      //表示 <
+            other_out = " blt ";
+        }
+        else if((*str_op) == "sgt"){
+            other_out = " bgt ";
+        }
+        else if((*str_op) == "<="){
+            other_out = " ble ";
+        }
+        else if((*str_op) == ">="){
+            other_out = " bge ";
+        }
+        else if((*str_op) == "!="){
+            other_out = " bne ";
+        }
+        else if((*str_op) == "=="){
+            other_out = " beq ";
+        }
+        other_out += ((*ToStr(yyvsp[-4])) + ", " + (*ToStr(yyvsp[-2])) + ", ." + (*ToStr(yyvsp[0])));
+        Func_Other.push_back(other_out);
+    }
+#line 1630 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+    break;
+
+
+#line 1634 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1813,7 +1861,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 284 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1918  */
+#line 322 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1918  */
 
 
 void yyerror(const char *s) {
