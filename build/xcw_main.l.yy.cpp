@@ -527,9 +527,8 @@ char *yytext;
 #include <cstring>
 #include "xcw_parser.tab.h"
 using namespace std;
-int charNum = 1;
+#line 531 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
 #line 532 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
-#line 533 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
 
 #define INITIAL 0
 
@@ -746,9 +745,9 @@ YY_DECL
 		}
 
 	{
-#line 18 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 17 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 
-#line 752 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
+#line 751 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -817,207 +816,201 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 19 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng;}
+#line 18 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 20 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum = 1;}
+#line 19 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 21 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return IF;}
+#line 20 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return IF;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 22 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return RETURN;}
+#line 21 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return RETURN;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 23 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return GOTO;}
+#line 22 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return GOTO;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 24 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return CALL;}
+#line 23 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return CALL;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 25 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return PARAM;}
+#line 24 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return PARAM;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 26 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return END;}
+#line 25 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return END;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 27 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return MALLOC;}
+#line 26 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return MALLOC;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 28 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return STORE;}
+#line 27 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return STORE;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 29 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return LOAD;}
+#line 28 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return LOAD;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 30 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
-{charNum += yyleng; return LOADADDR;}
+#line 29 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+{ return LOADADDR;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 31 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {
-    charNum += yyleng;
     yylval = new string(yytext);
     return LABEL;
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 35 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {
-    charNum += yyleng;
     yylval = new string(yytext);
     return IDENT;
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 41 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 39 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {
-    charNum += yyleng;
     yylval = new string(yytext);
     return REG;
 }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 46 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 43 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {
-    charNum += yyleng;
     yylval = new string(yytext);
     return FUNC;
 }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 51 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 47 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {
-    charNum += yyleng;
     yylval = new int(strtol(yytext, nullptr, 10));
     return NUM;
 }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 56 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 51 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {
-    charNum += yyleng;
     yylval = new int(strtol(yytext, nullptr, 10));
     return NUM;
 }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 61 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 55 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {return COLON;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 62 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 56 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {yylval = new string("add");return ADD;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 63 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 57 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {yylval = new string("sub");return SUB;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 64 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 58 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("mul");return MUL;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 65 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 59 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("div");return DIV;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 66 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 60 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("slt");return LE;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 67 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 61 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("<=");return LEQ;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 68 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 62 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("sgt");return GE;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 69 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 63 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string(">=");return GEQ;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 70 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 64 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("==");return EQ;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 71 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 65 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("!=");return NEQ;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 72 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 66 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("=");return ASSIGN;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 73 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 67 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {return LBRAC;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 74 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 68 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {return RBRAC;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 75 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 69 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("&&");return AND;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 76 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 70 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("||");return OR;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 77 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 71 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("!"); return NOT;}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 78 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 72 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 { yylval = new string("rem");return MOD;}
 	YY_BREAK
 case 37:
@@ -1025,15 +1018,15 @@ case 37:
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 80 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 74 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 {/* Single line comment */}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 81 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 75 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 ECHO;
 	YY_BREAK
-#line 1037 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
+#line 1030 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_main.l.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2050,7 +2043,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 81 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
+#line 75 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_scanner.l"
 
 
 int yywrap() {

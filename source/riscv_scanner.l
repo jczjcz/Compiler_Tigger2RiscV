@@ -5,7 +5,6 @@
 #include <cstring>
 #include "xcw_parser.tab.h"
 using namespace std;
-int charNum = 1;
 %}
 %option yylineno
 
@@ -16,45 +15,40 @@ fname f_{ident}
 label l{digit}+
 
 %%
-[\040\t]    {charNum += yyleng;}
-[\n\r]  {charNum = 1;}
-if      {charNum += yyleng; return IF;}
-return  {charNum += yyleng; return RETURN;}
-goto    {charNum += yyleng; return GOTO;}
-call    {charNum += yyleng; return CALL;}
-param   {charNum += yyleng; return PARAM;}
-end     {charNum += yyleng; return END;}
-malloc  {charNum += yyleng; return MALLOC;}
-store   {charNum += yyleng; return STORE;}
-load    {charNum += yyleng; return LOAD;}
-loadaddr   {charNum += yyleng; return LOADADDR;}
-{label}   {
-    charNum += yyleng;
+[\040\t]    {}
+[\n\r]  {}
+if      { return IF;}
+return  { return RETURN;}
+goto    { return GOTO;}
+call    { return CALL;}
+param   { return PARAM;}
+end     { return END;}
+malloc  { return MALLOC;}
+store   { return STORE;}
+load    { return LOAD;}
+loadaddr   { return LOADADDR;}
+
+l[0-9]+  {
     yylval = new string(yytext);
     return LABEL;
 }
-v{digit}+   {
-    charNum += yyleng;
+v[0-9]+  {
     yylval = new string(yytext);
     return IDENT;
 }
-[astx]{digit}+   {
-    charNum += yyleng;
+[astx][0-9]+   {
     yylval = new string(yytext);
     return REG;
 }
-{fname}     {
-    charNum += yyleng;
+f_[a-zA-Z_][a-zA-Z0-9_]* {
     yylval = new string(yytext);
     return FUNC;
 }
-{digit}+    {
-    charNum += yyleng;
+[0-9]+ {
     yylval = new int(strtol(yytext, nullptr, 10));
     return NUM;
 }
-"-"{digit}+ {
-    charNum += yyleng;
+"-"[0-9]+ {
     yylval = new int(strtol(yytext, nullptr, 10));
     return NUM;
 }
