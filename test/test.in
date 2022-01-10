@@ -1,0 +1,9 @@
+v0 = 1
+v1 = 2
+v2 = malloc 40
+
+f_main [0] [0]
+    t0 = a0 + a1
+    return
+end f_main
+
