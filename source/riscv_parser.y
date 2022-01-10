@@ -426,12 +426,12 @@ void yyerror(const string &s) {
 }
 
 int main(int argc, char **argv) {
-    if (argc >= 4)
-        if ((yyin = fopen(argv[3], "r")) == NULL)
+    if (argc >= 3)
+        if ((yyin = fopen(argv[2], "r")) == NULL)
             yyerror("Cannot open input file.");
     
-    if (argc >= 6)
-        if (freopen(argv[5], "w", stdout) == NULL)
+    if (argc >= 5)
+        if (freopen(argv[4], "w", stdout) == NULL)
             yyerror("Cannot open output file.");
 
     yyparse();
