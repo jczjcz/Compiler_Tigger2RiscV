@@ -105,7 +105,7 @@ FunctionHeader:
         Func_Other.push_back(other_out);
         other_out = " .type " + (*str_func) + ", @function";
         Func_Other.push_back(other_out);
-        other_out = "main:";
+        other_out = (*str_func) + ":";
         Func_Other.push_back(other_out);
 
         stk_func = STK_OP(*(ToInt($6)));
@@ -203,9 +203,7 @@ Expression:
     | REG ASSIGN REG BinOp NUM
     {
         int ass_num = (*(ToInt($5)));
-        out << "ass_num = "<<ass_num<<endl;
         string* str_op = new string((*ToStr($4)));
-        out << "str_op = "<<(*str_op)<<endl;
         if((*str_op) == "add"){
             if(ass_num > 2047 || ass_num < -2048){  
                 other_out = " li s0 " + to_string(ass_num);
