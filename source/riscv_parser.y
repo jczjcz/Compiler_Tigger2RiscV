@@ -121,7 +121,7 @@ FunctionEnd:
     {
         string* str_func = new string;
         *str_func = (ToStr($2))->substr(2);
-        other_out = " .size " + (*str_func) + " .-" + (*str_func);
+        other_out = " .size " + (*str_func) + ", .-" + (*str_func);
         Func_Other.push_back(other_out);
     }
 ;
