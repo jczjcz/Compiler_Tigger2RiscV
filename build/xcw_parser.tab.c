@@ -522,9 +522,9 @@ static const yytype_uint16 yyrline[] =
 {
        0,    51,    51,    52,    56,    60,    67,    84,    92,    96,
      120,   130,   131,   135,   140,   150,   203,   211,   227,   232,
-     248,   264,   288,   289,   290,   291,   292,   293,   294,   295,
-     299,   300,   304,   305,   306,   307,   308,   309,   313,   314,
-     315,   316,   317,   318
+     248,   264,   288,   293,   298,   305,   306,   307,   308,   309,
+     313,   314,   318,   319,   320,   321,   322,   323,   327,   328,
+     329,   330,   331,   332
 };
 #endif
 
@@ -1629,8 +1629,37 @@ yyreduce:
 #line 1630 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
     break;
 
+  case 22:
+#line 289 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1652  */
+    {
+        other_out = " j." + (*ToStr(yyvsp[0]));
+        Func_Other.push_back(other_out);
+    }
+#line 1639 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+    break;
 
-#line 1634 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+  case 23:
+#line 294 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1652  */
+    {
+        other_out = " ." + (*ToStr(yyvsp[0])) + ":";
+        Func_Other.push_back(other_out);
+    }
+#line 1648 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+    break;
+
+  case 24:
+#line 299 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1652  */
+    {
+        string* str_func = new string;
+        *str_func = (ToStr(yyvsp[0]))->substr(2);
+        other_out = " call" + (*str_func) + ":";
+        Func_Other.push_back(other_out);
+    }
+#line 1659 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
+    break;
+
+
+#line 1663 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/build/xcw_parser.tab.c" /* yacc.c:1652  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1861,7 +1890,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 322 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1918  */
+#line 336 "/home/xcw/xcw3_Compiler/Compiler_Tigger2RiscV/source/riscv_parser.y" /* yacc.c:1918  */
 
 
 void yyerror(const char *s) {

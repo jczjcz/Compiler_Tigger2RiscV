@@ -286,8 +286,22 @@ Expression:
         Func_Other.push_back(other_out);
     }
     | GOTO LABEL
+    {
+        other_out = " j." + (*ToStr($2));
+        Func_Other.push_back(other_out);
+    }
     | LABEL COLON
+    {
+        other_out = " ." + (*ToStr($2)) + ":";
+        Func_Other.push_back(other_out);
+    }
     | CALL FUNC
+    {
+        string* str_func = new string;
+        *str_func = (ToStr($2))->substr(2);
+        other_out = " call" + (*str_func) + ":";
+        Func_Other.push_back(other_out);
+    }
     | STORE REG NUM
     | LOAD NUM REG
     | LOAD IDENT REG
