@@ -1,62 +1,139 @@
- .comm v0, 8, 4
+ .global v0
+ .section .sdata
+ .align 2
+ .type v0, @object
+ .size v0, 4
+v0:
+ .word 0
  .text 
  .align 2
- .global func
- .type func, @function
-func:
+ .global bubblesort
+ .type bubblesort, @function
+bubblesort:
  addi sp, sp, -16
  sw ra, 12(sp)
- la t1, v0
- lw s4, 0(t1)
- li t0, 3
- sub s4, t0, s4
- sub s4, t0, s4
- mul s4, s4, s0
- add s4, a0, s4
- lw a0, 0(s4)
- mv a0, a0
+ li s4, 0
+ .l0:
+ lui t0, %hi(v0)
+ lw t0, %lo(v0)(t0)
+ addi a3, t0, -1
+ bge s4, a3, .l1
+ li a2, 0
+ .l2:
+ lui t0, %hi(v0)
+ lw t0, %lo(v0)(t0)
+ sub a3, t0, s4
+ addi a3, a3, -1
+ bge a2, a3, .l3
+ li s0, 4
+ mul a3, a2, s0
+ add a3, a0, a3
+ lw a3, 0(a3)
+ addi a1, a2, 1
+ li s0, 4
+ mul a1, a1, s0
+ add a1, a0, a1
+ lw a1, 0(a1)
+ ble a3, a1, .l4
+ addi a3, a2, 1
+ li s0, 4
+ mul a3, a3, s0
+ add a3, a0, a3
+ lw a3, 0(a3)
+ mv t6, a3
+ li s0, 4
+ mul a3, a2, s0
+ add a3, a0, a3
+ lw a1, 0(a3)
+ addi a3, a2, 1
+ li s0, 4
+ mul a3, a3, s0
+ add a3, a0, a3
+ sw a1, 0(a3)
+ li s0, 4
+ mul a3, a2, s0
+ add a3, a0, a3
+ sw t6, 0(a3)
+ .l4:
+ addi a2, a2, 1
+ j .l2
+ .l3:
+ addi s4, s4, 1
+ j .l0
+ .l1:
+ li a0, 0
  lw ra, 12(sp)
  addi sp, sp, 16
  ret
- .size func, .-func
+ .size bubblesort, .-bubblesort
  .text 
  .align 2
  .global main
  .type main, @function
 main:
- addi sp, sp, -32
- sw ra, 28(sp)
+ addi sp, sp, -64
+ sw ra, 60(sp)
+ li t0, 10
  la t1, v0
+ sw t0, 0(t1)
+ addi t1, sp, 0
+ li t0, 4
+ sw t0, 0(t1)
+ addi t1, sp, 4
+ li t0, 3
+ sw t0, 0(t1)
+ addi t1, sp, 8
+ li t0, 9
+ sw t0, 0(t1)
+ addi t1, sp, 12
+ li t0, 2
+ sw t0, 0(t1)
+ addi t1, sp, 16
+ sw x0, 0(t1)
+ addi t1, sp, 20
  li t0, 1
  sw t0, 0(t1)
- la t1, v0
- li t0, 2
- sw t0, 4(t1)
- addi t1, sp, 4
- li t0, -1
+ addi t1, sp, 24
+ li t0, 6
  sw t0, 0(t1)
- addi t1, sp, 4
- lw s4, 0(t1)
- addi s4, s4, -2
- addi t1, sp, 8
- sw s4, 0(t1)
- addi t1, sp, 8
- lw s4, 0(t1)
- mv s4, s4
- addi t1, sp, 12
- li t0, 16
+ addi t1, sp, 28
+ li t0, 5
  sw t0, 0(t1)
- addi t0, sp, 4
+ addi t1, sp, 32
+ li t0, 7
+ sw t0, 0(t1)
+ addi t1, sp, 36
+ li t0, 8
+ sw t0, 0(t1)
+ addi t0, sp, 0
  addi a0, t0, 0
- sw s4, 16(sp)
  mv a0, a0
- callfunc:
+ call bubblesort
+ mv a3, a0
+ .l5:
+ lui t1, %hi(v0)
+ lw t1, %lo(v0)(t1)
+ bge a3, t1, .l6
+ li s0, 4
+ mul s4, a3, s0
+ addi t0, sp, 0
+ add s4, t0, s4
+ lw a0, 0(s4)
  mv a0, a0
- lw s4, 16(sp)
- addi a3, a0, 2
- add a0, a3, s4
+ sw a3, 40(sp)
  mv a0, a0
- lw ra, 28(sp)
- addi sp, sp, 32
+ call putint
+ lw a3, 40(sp)
+ li a0, 10
+ sw a3, 40(sp)
+ mv a0, a0
+ call putch
+ lw a3, 40(sp)
+ addi a3, a3, 1
+ j .l5
+ .l6:
+ li a0, 0
+ lw ra, 60(sp)
+ addi sp, sp, 64
  ret
  .size main, .-main

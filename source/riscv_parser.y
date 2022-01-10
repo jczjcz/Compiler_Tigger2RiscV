@@ -229,6 +229,7 @@ Expression:
             }
         }
         else{
+            other_out = " li s0, " + to_string(ass_num);
             Func_Other.push_back(other_out);
             other_out = " " + (*ToStr($4)) + " " + (*ToStr($1)) + ", " + (*ToStr($3)) + ", s0";
             Func_Other.push_back(other_out);   
@@ -313,7 +314,7 @@ Expression:
     }
     | GOTO LABEL
     {
-        other_out = " j." + (*ToStr($2));
+        other_out = " j ." + (*ToStr($2));
         Func_Other.push_back(other_out);
     }
     | LABEL COLON
@@ -325,7 +326,7 @@ Expression:
     {
         string* str_func = new string;
         *str_func = (ToStr($2))->substr(2);
-        other_out = " call" + (*str_func) + ":";
+        other_out = " call " + (*str_func);
         Func_Other.push_back(other_out);
     }
     | STORE REG NUM
